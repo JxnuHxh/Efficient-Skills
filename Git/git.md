@@ -22,9 +22,9 @@
    
    查看文件内容 cat 文件名 <br>
     
-    git有个指向当前版本的指针 回退版本时仅修改指针<br>
+   git有个指向当前版本的指针 回退版本时仅修改指针<br>
     
-    获得版本号 git reflog <br>
+   获得版本号 git reflog <br>
    
    扔弃工作区的修改 git checkout --readme.text <br>
    
@@ -38,21 +38,21 @@
    
   拉去远程库文件内容  git pull <br>
     
-    表示允许与历史无关的拉取 git pull origin master --allow-unrelated-histories <br>
+  表示允许与历史无关的拉取 git pull origin master --allow-unrelated-histories <br>
     
-    创建切换分支 git checkout -b <br>
-    
-    合并某分支到当前分支 git merge <br>
-    
-    删除分支 git branch -d <br>
-    
-    查看分支 git branch <br>
-    
-    储存工作现场 git stash <br>
-     
-     克隆项目 git clone url  
+  创建切换分支 git checkout -b <br>
 
-      保存退出  : wq   
+  合并某分支到当前分支 git merge <br>
+    
+  删除分支 git branch -d <br>
+    
+  查看分支 git branch <br>
+    
+  储存工作现场 git stash <br>
+
+  克隆项目 git clone url  
+
+  保存退出  : wq   
 
 ## 场景演示 多人协作，代码冲突时的合并与回滚    
 
@@ -85,8 +85,10 @@ mary: git checkout master
 mary：git pull origin master mary意识到远程仓库的master分支可能已经被人修改了，为了安全起见，先获取一下最新代码   
 
 mary: git merge branckMary报错：a.html中有冲突，自动merge失败，不能merge   
-打开a.html, 会发现有如下内容。其中HEAD到 =======之间的内容是master中最新更新的内容，   =======到branchMary之间的就是mary更新的内容。可以根据实际需要进行手动合并。 <<<<<<< HEADtony   
-=======  
+打开a.html, 会发现有如下内容。其中HEAD到   
+=======之间的内容是master中最新更新的内容，   
+=======到branchMary之间的就是mary更新的内容。可以根据实际需要进行手动合并。 <<<<<<< HEADtony   
+  
 mary   
 >>>>>>> branchMary   
 
@@ -105,3 +107,11 @@ mary: git add a.html
 mary: git commit -am "revert to tony"   
 mary : git push origin master   
 mary: 查看远程仓库的a.html现在只有“tony”了。同时，commits中又多了一条mary的推送记录    
+
+## 报错解决  
+1.  
+warning: LF will be replaced by CRLF in    
+原因是存在符号转义问题   
+windows中的换行符为 CRLF， 而在linux下的换行符为LF，所以在执行add . 时出现提示，解决办法：  
+git config --global core.autocrlf false   
+
